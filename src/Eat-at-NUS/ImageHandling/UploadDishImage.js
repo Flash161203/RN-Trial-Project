@@ -1,8 +1,7 @@
 // Importing the required stuff
-import { db } from '../../../firebase/Eat-at-NUS_config';
-import { ref, update } from 'firebase/database';
+import { db, storage } from '../../../firebase/Eat-at-NUS_config';
 
-import { storage } from '../../../firebase/Eat-at-NUS_config';
+import { ref, update } from 'firebase/database';
 import { ref as storageRef, uploadBytes } from 'firebase/storage';
 
 const uploadDishImage = (stallID, dishID, fileType, imgBlob) => {
@@ -22,7 +21,9 @@ const uploadDishImage = (stallID, dishID, fileType, imgBlob) => {
     });
 
     const dishImageReference = storageRef(storage, dishImageFilePath);
-    uploadBytes(dishImageReference, imgBlob);
+    const a = uploadBytes(dishImageReference, imgBlob).then((snapshot) => {
+        console.log('Uploaded'); // To check if the function is executed
+    });
 
 };
 

@@ -4,6 +4,7 @@ import { useState } from 'react';
 // import { Button } from 'react-native-web';
 
 import uploadDishImage from './UploadDishImage';
+
 import addStall from '../Database/AddStall';
 import addDish from '../Database/AddDish';
 import * as ImagePicker from 'expo-image-picker';
@@ -15,8 +16,8 @@ import { storage } from '../../../firebase/Eat-at-NUS_config';
 const UploadImageTest = () => {
 
     const [image, setImage] = useState(null);
-    const [uploading, setUploading] = useState(false);
-    const [downloadURL, setDownloadURL] = useState('');
+    // const [uploading, setUploading] = useState(false);
+    // const [downloadURL, setDownloadURL] = useState('');
 
     // addStall('S1', 'Stall 1', 'Earth', '0800', '2000', 'Indian');
     // const dishID = addDish('S1', 'Dish 1', '5', 'Tasty', '200', 'None');
@@ -43,16 +44,14 @@ const UploadImageTest = () => {
     };
 
     const uploadImage = async () => {
-        setUploading(true);
         const response = await fetch(image.uri);
         const blob = await response.blob();
         const fileType = image.uri.substring(image.uri.lastIndexOf('.'));
-        const reference = ref(storage, 'dishes/S1/D1' + fileType);
-        uploadBytes(reference, blob);
-        // uploadDishImage('S1', '-N7VFvkKRBInZVnad6aJ', fileType, blob);
-        console.log('Done');
+        // const reference = ref(storage, 'dishes/S1/D1' + fileType);
+        // uploadBytes(reference, blob).then((snapshot) => {console.log('Done');}); // To check if the function is executed
+        uploadDishImage('S1', '-N7VFvkKRBInZVnad6aJ', fileType, blob);
         
-    }
+    };
 
     // const dishRef = ref(storage, 'dishes/S1/D1/image.jpg');
     // getDownloadURL(dishRef).then(
@@ -68,7 +67,9 @@ const UploadImageTest = () => {
     return (
         <View style={styles.container}>
             <Text onPress={pickImage}>UploadImage Test</Text>
-            <Text onPress = {uploadImage}>Click</Text>
+            <Text onPress = {() => {
+                console.log('Pressed');
+                uploadImage();}}>Click</Text>
         </View>
     );
 

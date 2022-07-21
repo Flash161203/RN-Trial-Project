@@ -17,19 +17,10 @@ const retrieveDishImage = (dishID) => {
         });
     }, []);
 
-    useEffect(() => {
-        
-        const func = async () => {
-            const dishImageReference = storageRef(storage, dishImageFilePath);
-            await getDownloadURL(dishImageReference).then(
-                (url) => {
-                    setDishImageURL(url);
-                }
-            );
-        }
+    getDownloadURL(storageRef(storage, dishImageFilePath)).then((url) => {
+        setDishImageURL(url);
+    })
 
-        func();
-    }, [])
 
     return dishImageURL;
 

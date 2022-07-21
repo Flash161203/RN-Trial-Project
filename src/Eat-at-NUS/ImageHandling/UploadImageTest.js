@@ -1,32 +1,74 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import uploadImage from './UploadImage';
+import { useState } from 'react';
+// import { Button } from 'react-native-web';
+
+import uploadDishImage from './UploadDishImage';
+import addStall from '../Database/AddStall';
+import addDish from '../Database/AddDish';
 import * as ImagePicker from 'expo-image-picker';
 
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
+import { storage } from '../../../firebase/Eat-at-NUS_config';
+
+
 const UploadImageTest = () => {
+
+    const [image, setImage] = useState(null);
+    const [uploading, setUploading] = useState(false);
+    const [downloadURL, setDownloadURL] = useState('');
+
+    // addStall('S1', 'Stall 1', 'Earth', '0800', '2000', 'Indian');
+    // const dishID = addDish('S1', 'Dish 1', '5', 'Tasty', '200', 'None');
     
     const pickImage = async () => {
+
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.All,
-            base64: true,
             allowsEditing: true,
             aspect: [10, 9],
             quality: 1,
         });
         
-        console.log(result);
+        // console.log(result);
+        // console.log(result.uri);
+
+        const source = {uri: result.uri};
+        console.log(source);
+        setImage(source);
         
         if (!result.cancelled) {
-            //   setImageURI(result.uri);
-            uploadImage('S1', 'Dish 1', result.uri);
+            console.log('Cool');
         }
     };
+
+    const uploadImage = async () => {
+        setUploading(true);
+        const response = await fetch(image.uri);
+        const blob = await response.blob();
+        const fileType = image.uri.substring(image.uri.lastIndexOf('.'));
+        const reference = ref(storage, 'dishes/S1/D1' + fileType);
+        uploadBytes(reference, blob);
+        // uploadDishImage('S1', '-N7VFvkKRBInZVnad6aJ', fileType, blob);
+        console.log('Done');
+        
+    }
+
+    // const dishRef = ref(storage, 'dishes/S1/D1/image.jpg');
+    // getDownloadURL(dishRef).then(
+    //     (url) => {
+    //         setDownloadURL(url);
+    //     }
+    // )
+    // console.log(downloadURL);
+
+
 
 
     return (
         <View style={styles.container}>
-            <Text>UploadImage Test</Text>
-            <button onClick={pickImage}>Upload an Image</button>
+            <Text onPress={pickImage}>UploadImage Test</Text>
+            <Text onPress = {uploadImage}>Click</Text>
         </View>
     );
 

@@ -2,12 +2,17 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
 // Set App.js as entry point
-import { registerRootComponent } from 'expo';
+// import { registerRootComponent } from 'expo';
 
 // Upload Image Test
 import UploadImageTest from './src/Eat-at-NUS/ImageHandling/UploadImageTest';
 
+// Retrieve Image Test
+import RetrieveImageTest from './src/Eat-at-NUS/ImageHandling/RetrieveImageTest';
+
+
 const App = () => {
+  
   // return (
   //   <View style={styles.container}>
   //     <Text>Hola!</Text>
@@ -20,6 +25,11 @@ const App = () => {
     <UploadImageTest />
   );
 
+  // RetrieveImage Test
+  // return (
+  //   <RetrieveImageTest />
+  // );
+
 }
 
 const styles = StyleSheet.create({
@@ -31,4 +41,5 @@ const styles = StyleSheet.create({
   },
 });
 
-export default registerRootComponent(App);
+// export default registerRootComponent(App);
+export default App;

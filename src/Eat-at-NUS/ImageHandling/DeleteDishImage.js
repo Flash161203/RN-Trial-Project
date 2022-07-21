@@ -3,12 +3,11 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { db, storage } from "../../../firebase/Eat-at-NUS_config";
 import { ref, onValue } from "firebase/database";
-import { ref as storageRef, getDownloadURL } from "firebase/storage";
+import { ref as storageRef, deleteObject } from "firebase/storage";
 
-const retrieveDishImage = (dishID) => {
+const deleteDishImage = (dishID) => {
 
     const [dishImageFilePath, setDishImageFilePath] = useState('');
-    const [dishImageURL, setDishImageURL] = useState('');
 
     useEffect(() => {
         onValue(ref(db, 'dishes/' + dishID + '/' + 'imageURL'), (snapshot) => {
@@ -17,13 +16,8 @@ const retrieveDishImage = (dishID) => {
         });
     }, []);
 
-    getDownloadURL(storageRef(storage, dishImageFilePath)).then((url) => {
-        setDishImageURL(url);
-    })
-
-
-    return dishImageURL;
+    deleteObject(storageRef(storage, dishImageFilePath));
 
 }
 
-export default retrieveDishImage;
+export default deleteDishImage;

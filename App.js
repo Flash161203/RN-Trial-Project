@@ -10,6 +10,12 @@ import UploadImageTest from './src/Eat-at-NUS/ImageHandling/UploadImageTest';
 // Retrieve Image Test
 import RetrieveImageTest from './src/Eat-at-NUS/ImageHandling/RetrieveImageTest';
 
+// Retrieve Stall Image Test
+import RetrieveStallImageTest from './src/Eat-at-NUS/ImageHandling/RetrieveStallImageTest';
+
+// Filter Data Test
+import FilterDataTest from './src/Eat-at-NUS/Database/FilterDataTest';
+
 
 const App = () => {
   
@@ -21,14 +27,24 @@ const App = () => {
   // );
 
   // UploadImage Test
-  return (
-    <UploadImageTest />
-  );
+  // return (
+  //   <UploadImageTest />
+  // );
 
   // RetrieveImage Test
   // return (
   //   <RetrieveImageTest />
   // );
+
+  // Retrieve Stall Image Test
+  // return (
+  //   <RetrieveStallImageTest />
+  // );
+
+  // Filter Data Test
+  return (
+    <FilterDataTest />
+  );
 
 }
 

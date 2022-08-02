@@ -9,31 +9,33 @@ import { ref, getDownloadURL } from 'firebase/storage';
 
 const RetrieveImageTest = () => {
 
-    const [imageURL, setImageURL] = useState('ope');
+    // const [imageURL, setImageURL] = useState('ope');
+    // let imageURL = 'Gaali';
+    // const f = async () => {
+    //     imageURL = await retrieveDishImage('trial1');
+    //     console.log('Ippo', imageURL);
+    // }
 
-    // useEffect(() => {
-        
+    const imageURL = fetch(retrieveDishImage('trial1'));
 
-
-    //     func();
-    // }, [])
-    // -N7VFvkKRBInZVnad6aJ
-
-    const func = async () => {
-        const dishImageReference = ref(storage, 'dishes/S1/image.jpg');
-        console.log(dishImageReference);
-        await getDownloadURL(dishImageReference).then(
-            (url) => {
-                setImageURL(url);
-                console.log(imageURL);
-            }
-        );
-    }
+    // const func = async () => {
+    //     const dishImageReference = ref(storage, 'dishes/S1/trial1.jpg');
+    //     // console.log(dishImageReference);
+    //     await getDownloadURL(dishImageReference).then(
+    //         (url) => {
+    //             setImageURL(url);
+    //             console.log(imageURL);
+    //         }
+    //     );
+    // }
 
     return (
         <View style={styles.container}>
             <Text>Retrieve Image Test</Text>
-            <Text onPress = {func}>Press to check</Text>
+            <Text onPress = {() => {
+                console.log('Pressed');
+                // f();
+            }}>Press to check</Text>
             <Text>{imageURL}</Text>
         </View>
     );

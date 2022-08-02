@@ -14,7 +14,9 @@ const FilterDataTest = () => {
   return (
   <View style={styles.container}>
     <Text>Filter Data Test</Text>
-    <Text onPress={filterPress}>Press to check</Text>
+    <Text onPress={() => {
+      console.log('Pressed')
+      filterPress();}}>Press to check</Text>
   </View>
   );
 

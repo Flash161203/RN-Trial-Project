@@ -2,21 +2,35 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { db, storage } from "../../../firebase/Eat-at-NUS_config";
-import { ref, onValue } from "firebase/database";
+import { ref, get, update } from "firebase/database";
 import { ref as storageRef, deleteObject } from "firebase/storage";
 
-const deleteDishImage = (dishID) => {
+const deleteDishImage = async (stallID, dishID) => {
 
-    const [dishImageFilePath, setDishImageFilePath] = useState('');
+    let fileType = '';
 
-    useEffect(() => {
-        onValue(ref(db, 'dishes/' + dishID + '/' + 'imageURL'), (snapshot) => {
-            const data = snapshot.val();
-            setDishImageFilePath(data);
-        });
-    }, []);
+    await get(ref(db, 'dishes/' + dishID + '/imageURL')).then((snapshot) => {
+        const dishImageURL = snapshot.val();
+        fileType = dishImageURL.slice(
+            dishImageURL.lastIndexOf('.'),
+            dishImageURL.lastIndexOf('?'));
+    });
+    
+    const dishImageFilePath = 'dishes/' + stallID + '/' + dishID + fileType;
 
-    deleteObject(storageRef(storage, dishImageFilePath));
+    await deleteObject(storageRef(storage, dishImageFilePath)).catch((error) => {
+        console.log(error);
+    });
+
+    // Updating the data in dishes
+    update(ref(db, 'dishes/' + dishID), {
+        imageURL: ''
+    });
+
+    // Updating the data in dishesMetadata
+    update(ref(db, 'dishesMetadata/' + stallID + '/' + dishID), {
+        imageURL: ''
+    });
 
 }
 

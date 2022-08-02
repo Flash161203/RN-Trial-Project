@@ -13,6 +13,9 @@ import RetrieveImageTest from './src/Eat-at-NUS/ImageHandling/RetrieveImageTest'
 // Retrieve Stall Image Test
 import RetrieveStallImageTest from './src/Eat-at-NUS/ImageHandling/RetrieveStallImageTest';
 
+// Delete Image Test
+import DeleteImageTest from './src/Eat-at-NUS/ImageHandling/DeleteImageTest';
+
 // Filter Data Test
 import FilterDataTest from './src/Eat-at-NUS/Database/FilterDataTest';
 
@@ -41,10 +44,15 @@ const App = () => {
   //   <RetrieveStallImageTest />
   // );
 
-  // Filter Data Test
+  // Delete Image Test
   return (
-    <FilterDataTest />
+    <DeleteImageTest />
   );
+
+  // Filter Data Test
+  // return (
+  //   <FilterDataTest />
+  // );
 
 }
 

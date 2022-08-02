@@ -49,7 +49,7 @@ const UploadImageTest = () => {
         const fileType = image.uri.substring(image.uri.lastIndexOf('.'));
         // const reference = ref(storage, 'dishes/S1/D1' + fileType);
         // uploadBytes(reference, blob).then((snapshot) => {console.log('Done');}); // To check if the function is executed
-        uploadDishImage('S1', '-N7VFvkKRBInZVnad6aJ', fileType, blob);
+        uploadDishImage('lKXwhClDwba0UYcliCg8CVHo02H2', '-N8Sp9FTq94_crINPhFy', fileType, blob);
         
     };
 

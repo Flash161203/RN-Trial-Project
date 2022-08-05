@@ -19,6 +19,9 @@ import DeleteImageTest from "./src/Eat-at-NUS/ImageHandling/DeleteImageTest";
 // Filter Data Test
 import FilterDataTest from "./src/Eat-at-NUS/Database/filter/FilterDataTest";
 
+// Add Review Test
+import AddReviewTest from "./src/Eat-at-NUS/Database/AddReviewTest";
+
 const App = () => {
   // return (
   //   <View style={styles.container}>
@@ -46,7 +49,10 @@ const App = () => {
   // return <DeleteImageTest />;
 
   // Filter Data Test
-  return <FilterDataTest />;
+  // return <FilterDataTest />;
+
+  // Add Review Test
+  return <AddReviewTest />;
 };
 
 const styles = StyleSheet.create({

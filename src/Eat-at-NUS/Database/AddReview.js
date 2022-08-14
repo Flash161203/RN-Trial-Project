@@ -66,7 +66,6 @@ const addReview = (dishID, stallID, rating, review, author) => {
       numRatings: newNumRatings,
       totalRating: newTotalRating,
       rating: avgRating,
-      ratingIndex: -avgRating,
     });
 
     // Update average rating of stall in its metadata

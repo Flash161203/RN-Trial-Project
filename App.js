@@ -49,10 +49,10 @@ const App = () => {
   // return <DeleteImageTest />;
 
   // Filter Data Test
-  // return <FilterDataTest />;
+  return <FilterDataTest />;
 
   // Add Review Test
-  return <AddReviewTest />;
+  // return <AddReviewTest />;
 };
 
 const styles = StyleSheet.create({

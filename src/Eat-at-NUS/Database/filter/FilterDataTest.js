@@ -6,7 +6,7 @@ import filterData from "./FilterData";
 
 const FilterDataTest = () => {
   const filterPress = async () => {
-    const result = await filterData("d", ["Japanese"]);
+    const result = await filterData("s", ["Taiwanese"]);
     console.log(result);
   };
 
